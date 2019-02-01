@@ -1,0 +1,139 @@
+// The burger Menu button
+.menu-btn {
+    visibility: hidden;
+    position: absolute;
+    z-index: 3;
+    top: 35px;
+    right: 35px;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+   // @include easeOut;
+
+    .btn-line {
+        width: 28px;
+        height: 3px;
+        margin: 0 0 5px 0;
+        //background: set-text-color($primary-color);
+        transition: all 0.5s ease-out;
+       // @include easeOut;
+       background: $primary-color;
+    }
+
+    // Rotate into X with menu lines
+    &.close {
+        transform: rotate(180deg);
+        
+
+        .btn-line {
+            background: $text-color;
+            // Line 1- Rotate
+            &:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);                 
+            }
+
+            // Line 2- Hide
+            &:nth-child(2) {
+                opacity: 0;                 
+            }
+
+            // Line 3- Rotate
+            &:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);                 
+            }
+        }
+    }
+}
+
+// Menu overlay
+
+.menu {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: 0.9;
+    visibility: hidden;
+    background: $primary-color;
+
+    &.show {
+        visibility: visible; 
+    }
+
+    &-nav {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+       // justify-content: center;
+       padding: 1rem;
+        width: 100%;
+        height: 70vh;
+        overflow: hidden; 
+    }
+   /* &-nav {
+        margin: 0;
+        padding: 0;
+        background: darken($primary-color, 5);
+        list-style: none; 
+        transform: translate3d(0, -100%, 0);
+        transition: all 0.5s ease-out;
+
+        &.show {
+            // slide in from the top of the page
+            transform: translate3d(0, 0, 0);
+        }
+    }*/
+
+    // Branding side
+   /* &-branding {
+        background: $primary-color;
+        transition: all 0.5s ease-out;
+        transform: translate3d(0, 100%,  0);
+
+        &.show {
+            // slide from bottom
+            transform: translate3d(0, 0, 0);
+        } 
+        .portrait {
+            width: 250px;
+            height: 250px;
+            background: url(../img/portrait.jpg);
+            border-radius: 50%;
+            border: solid 3px $secondary-color;
+        }
+    }*/
+
+    .nav-item {
+        transform: translate3d(600px, 0, 0);
+        transition: all 0.5s ease-out;
+
+        &.show {
+            // slide from right
+            transform: translate3d(0, 0, 0);
+        }
+
+        &.current > a {
+            color: $secondary-color;
+        }
+    }
+    .nav-link {
+        display: inline-block;
+        position: relative;
+        font-size:  14px;
+        text-transform: uppercase;
+        padding: 10px 0;
+        font-weight: 600;
+        color: $text-color;
+        text-decoration: none;
+       // transition: all 0.5s ease-out;
+
+        &:hover {
+            color: $secondary-color;
+        }
+    }
+}
+
+// Delay each nav item slide by 0.1s
+@for $x from 1 through 4 {
+    .nav-item:nth-child(#{$x}) {
+        transition-delay: $x * 0.1s;
+    }
+}
